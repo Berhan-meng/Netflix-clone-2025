@@ -1,12 +1,12 @@
-
-import './App.css'
+import "./App.css";
+import Home from "./pages/Home/Home";
 
 function App() {
   return (
     <>
-      <h1>Hello Netflix</h1>
+      < Home />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
