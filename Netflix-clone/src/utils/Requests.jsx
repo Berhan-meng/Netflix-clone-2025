@@ -1,36 +1,31 @@
-import axiosInstance from "./Axios";
+// import axiosInstance from "./Axios";
 
-const API_KEY = import.meta.env.VITE_TMDB_API_KEY; 
-
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 // TMDB requests
 const requests = {
   // Trending Movies
-  getTrending: () =>
-    axiosInstance.get(`/trending/movie/day?api_key=${API_KEY}`),
-
-  // Popular Movies
-  getPopular: () => axiosInstance.get(`/movie/popular?api_key=${API_KEY}`),
-
+  getTrending: `/trending/movie/day?api_key=${API_KEY}&language=en-US`,
+  //Original Movies
+  getOriginals: `/discover/tv?api_key=${API_KEY}&with_networks=213`,
   // Top-Rated Movies
-  getTopRated: () => axiosInstance.get(`/movie/top_rated?api_key=${API_KEY}`),
-
+  getTopRated:`/movie/top_rated?api_key=${API_KEY}&language=en-US`,
+  // // Action Movies
+  getActionMovies:`/discover/movie?api_key=${API_KEY}&with_genres=28`,
+  // //Comedy Movies
+  getComedyMovies: `/discover/movie?api_key=${API_KEY}&with_genres=35`,
+  // // Horror Movies
+  getHorrorMovies:`/discover/movie?api_key=${API_KEY}&with_genres=27`,
+  // // Romance Movies
+  getRomanceMovies:`/discover/movie?api_key=${API_KEY}&with_genres=10749`,
+  // //Documenteries
+  getDocumentaries:`/discover/movie?api_key=${API_KEY}&with_genres=99`,
+  // //Popular  tv Shows
+  getPopularTV:`/tv/popular?api_key=${API_KEY}`,
+  // // Popular Movies
+  getPopular:`/movie/popular?api_key=${API_KEY}&language=en-US`,
   // Upcoming Movies
-  getUpcoming: () => axiosInstance.get(`/movie/upcoming?api_key=${API_KEY}`),
-
-  // Get movie details by ID
-  getMovieDetails: (id) => axiosInstance.get(`/movie/${id}?api_key=${API_KEY}`),
-
-  // Get movie videos (trailers)
-  getMovieVideos: (id) =>
-    axiosInstance.get(`/movie/${id}/videos?api_key=${API_KEY}`),
-
-  // Search movies
-  searchMovies: (query) =>
-    axiosInstance.get(`/search/movie?api_key=${API_KEY}&query=${query}`),
-
-  // Genres
-  getGenres: () => axiosInstance.get(`/genre/movie/list?api_key=${API_KEY}`),
+  getUpcoming: `/movie/upcoming?api_key=${API_KEY}`
 };
 
 export default requests;

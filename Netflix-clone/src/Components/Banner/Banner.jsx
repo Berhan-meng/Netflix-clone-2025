@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import requests from "../../utils/Requests";
+import axiosInstance from "../../utils/Axios";
 import "./banner.css";
 
 export default function Banner() {
@@ -8,9 +9,12 @@ export default function Banner() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const req = await requests.getTrending();
+        const req = await axiosInstance.get(requests.getTrending);
         const results = req.data.results;
-        setMovie(results[Math.floor(Math.random() * results.length)]);
+
+        const randomMovie = results[Math.floor(Math.random() * results.length)];
+
+        setMovie(randomMovie);
       } catch (err) {
         console.error("Error fetching trending:", err);
       }
@@ -18,6 +22,11 @@ export default function Banner() {
 
     fetchData();
   }, []);
+
+  // Don't render until movie is loaded
+  if (!movie) return null;
+
+  const bannerImg = movie.backdrop_path || movie.poster_path;
 
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
@@ -27,7 +36,9 @@ export default function Banner() {
     <header
       className="banner"
       style={{
-        backgroundImage: `url("https://image.tmdb.org/t/p/original${movie?.backdrop_path}")`,
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+        backgroundImage: `url("https://image.tmdb.org/t/p/original${bannerImg}")`,
       }}
     >
       <div className="banner__contents">
@@ -35,10 +46,10 @@ export default function Banner() {
           {movie?.title || movie?.name || movie?.original_name}
         </h1>
 
-        <di v className="banner__buttons">
+        <div className="banner__buttons">
           <button className="banner__button play">Play</button>
           <button className="banner__button">My List</button>
-        </di>
+        </div>
 
         <p className="banner__description">{truncate(movie?.overview, 150)}</p>
       </div>
