@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import "./Row.css";
+import { useEffect, useState } from "react";
 import axiosInstance from "../../../utils/Axios";
 import movieTrailer from "movie-trailer";
 import YouTube from "react-youtube";
+import styles from  "./Row.module.css";
 
 export default function Row({ title, fetchUrl, isLargeRow }) {
   const [movies, setMovies] = useState([]);
@@ -43,15 +43,15 @@ export default function Row({ title, fetchUrl, isLargeRow }) {
   };
 
   return (
-    <div className="row">
+    <div className={styles.row}>
       <h2>{title}</h2>
 
-      <div className="row__posters">
+      <div className={styles.row__posters}>
         {movies?.map((movie) => (
           <img
             key={movie.id}
             onClick={() => handleClick(movie)}
-            className={`row__poster ${isLargeRow && "row__posterLarge"}`}
+            className={`${styles.row__poster} ${isLargeRow && styles.row__posterLarge}`}
             src={`${base_url}${
               isLargeRow ? movie.poster_path : movie.backdrop_path
             }`}
@@ -60,7 +60,7 @@ export default function Row({ title, fetchUrl, isLargeRow }) {
         ))}
       </div>
 
-      <div style={{ padding: "40px" }}>
+      <div style={{ padding: "15px" }}>
         {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
       </div>
     </div>

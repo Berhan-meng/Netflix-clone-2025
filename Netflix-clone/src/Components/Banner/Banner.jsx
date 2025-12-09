@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import requests from "../../utils/Requests";
 import axiosInstance from "../../utils/Axios";
-import "./banner.css";
+import styles from "./banner.module.css";
 
 export default function Banner() {
   const [movie, setMovie] = useState(null);
@@ -26,7 +26,7 @@ export default function Banner() {
   // Don't render until movie is loaded
   if (!movie) return null;
 
-  const bannerImg = movie.backdrop_path || movie.poster_path;
+  const bannerImg = movie?.backdrop_path || movie?.poster_path;
 
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
@@ -34,27 +34,31 @@ export default function Banner() {
 
   return (
     <header
-      className="banner"
+      className={styles.banner}
       style={{
-        backgroundSize: "cover",
-        backgroundPosition: "center center",
+        backgroundSize:"center",
+        backgroundPosition: "center",
         backgroundImage: `url("https://image.tmdb.org/t/p/original${bannerImg}")`,
       }}
     >
-      <div className="banner__contents">
-        <h1 className="banner__title">
+      <div className={styles.banner__contents}>
+        <h1 className={styles.banner__title}>
           {movie?.title || movie?.name || movie?.original_name}
         </h1>
 
-        <div className="banner__buttons">
-          <button className="banner__button play">Play</button>
-          <button className="banner__button">My List</button>
+        <div className={styles.banner__buttons}>
+          <button className={`${styles.banner__button} ${styles.play}`}>
+            Play
+          </button>
+          <button className={styles.banner__button}>My List</button>
         </div>
 
-        <p className="banner__description">{truncate(movie?.overview, 150)}</p>
+        <p className={styles.banner__description}>
+          {truncate(movie?.overview, 150)}
+        </p>
       </div>
 
-      <div className="banner_fadeBottom"></div>
+      <div className={styles.banner_fadeBottom}></div>
     </header>
   );
 }
