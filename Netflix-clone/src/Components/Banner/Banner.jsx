@@ -36,12 +36,16 @@ export default function Banner() {
     <header
       className={styles.banner}
       style={{
-        backgroundSize:"center",
+        backgroundSize: "center",
         backgroundPosition: "center",
         backgroundImage: `url("https://image.tmdb.org/t/p/original${bannerImg}")`,
       }}
     >
       <div className={styles.banner__contents}>
+        <div className={styles.demo}>
+          This is a DEMO Netflix Clone Project – Educational Use Only
+        </div>
+
         <h1 className={styles.banner__title}>
           {movie?.title || movie?.name || movie?.original_name}
         </h1>
@@ -52,7 +56,6 @@ export default function Banner() {
           </button>
           <button className={styles.banner__button}>My List</button>
         </div>
-
         <p className={styles.banner__description}>
           {truncate(movie?.overview, 150)}
         </p>
