@@ -1,6 +1,6 @@
 import React from "react";
 import "./Header.css";
-import Logoimg from "../../assets/Netflix_logo.svg";
+import Logoimg from "../../assets/imglogo.svg";
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
