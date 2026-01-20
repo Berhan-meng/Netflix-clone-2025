@@ -43,7 +43,7 @@ export default function Banner() {
     >
       <div className={styles.banner__contents}>
         <div className={styles.demo}>
-          This is a DEMO Netflix Clone Project – Educational Use Only
+          This is a Movie Treaming DEMO Project – Educational Use Only
         </div>
 
         <h1 className={styles.banner__title}>

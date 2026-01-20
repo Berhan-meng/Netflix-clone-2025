@@ -5,7 +5,7 @@ export default function RowList() {
   return (
     <>
       <Row
-        title="Netflix Originals"
+        title="Movie Originals"
         fetchUrl={requests.getOriginals}
         isLargeRow="true"
       />
