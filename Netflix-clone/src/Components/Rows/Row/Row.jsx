@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../../../utils/Axios";
 import movieTrailer from "movie-trailer";
 import YouTube from "react-youtube";
-import styles from  "./Row.module.css";
+import styles from "./Row.module.css";
 
 export default function Row({ title, fetchUrl, isLargeRow }) {
   const [movies, setMovies] = useState([]);
@@ -61,7 +61,18 @@ export default function Row({ title, fetchUrl, isLargeRow }) {
       </div>
 
       <div style={{ padding: "15px" }}>
-        {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
+        {trailerUrl && (
+          <div className={styles.trailerContainer}>
+            <button
+              className={styles.closeBtn}
+              onClick={() => setTrailerUrl("")}
+            >
+              ✖ Close
+            </button>
+
+            <YouTube videoId={trailerUrl} opts={opts} />
+          </div>
+        )}
       </div>
     </div>
   );

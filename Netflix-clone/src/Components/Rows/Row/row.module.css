@@ -30,3 +30,25 @@
 .row__posterLarge:hover {
   transform: scale(1.09);
 }
+.trailerContainer {
+  position: relative;
+  margin-top: 10px;
+}
+
+.closeBtn {
+  position: absolute;
+  top: -20px;
+  right: 520px;
+  background: white;
+  color: #111;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  border-radius: 6px;
+}
+
+.closeBtn:hover {
+  background: red;
+  color: azure;
+}
